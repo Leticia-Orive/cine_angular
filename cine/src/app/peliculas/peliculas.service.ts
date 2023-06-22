@@ -37,7 +37,7 @@ export class PeliculaService {
   guardarPelicula(pelicula: Pelicula): Observable<any> {
     // Aquí se debe realizar la lógica para guardar la película en el servidor
     // Por ahora, simularemos una solicitud POST a una API ficticia
-    return this.httpClient.post<any>(
+    return this.httpClient.post<Pelicula>(
       'http://localhost:4200/pelicula',
       pelicula
     );

@@ -64,3 +64,73 @@
 <div *ngIf="mensajeExito" class="mensaje-exito">
   {{ mensajeExito }}
 </div>
+
+<!-- Formulario de edición de película -->
+<div *ngIf="modo === 'editar' && peliculaSeleccionada">
+  <h2>Editar Película</h2>
+  <form (ngSubmit)="guardarPelicula(peliculaSeleccionada)">
+    <div>
+      <label for="titulo">Título</label>
+      <input
+        type="text"
+        id="titulo"
+        name="titulo"
+        [(ngModel)]="peliculaSeleccionada.titulo"
+        required
+      />
+    </div>
+    <div>
+      <label for="genero">Género</label>
+      <input
+        type="text"
+        id="genero"
+        name="genero"
+        [(ngModel)]="peliculaSeleccionada.genero"
+        required
+      />
+    </div>
+    <div>
+      <label for="director">Director</label>
+      <input
+        type="text"
+        id="director"
+        name="director"
+        [(ngModel)]="peliculaSeleccionada.director"
+        required
+      />
+    </div>
+    <div>
+      <label for="duracion">Duración</label>
+      <input
+        type="number"
+        id="duracion"
+        name="duracion"
+        [(ngModel)]="peliculaSeleccionada.duracion"
+        required
+      />
+    </div>
+    <div>
+      <label for="sinopsis">Sinopsis</label>
+      <textarea
+        id="sinopsis"
+        name="sinopsis"
+        [(ngModel)]="peliculaSeleccionada.sinopsis"
+        required
+      ></textarea>
+    </div>
+    <div>
+      <label for="year">Año</label>
+      <input
+        type="number"
+        id="year"
+        name="year"
+        [(ngModel)]="peliculaSeleccionada.year"
+        required
+      />
+    </div>
+    <!-- Agrega más campos según las propiedades de la película -->
+
+    <button type="submit">Guardar</button>
+    <button (click)="regresarALista()">Cancelar</button>
+  </form>
+</div>
