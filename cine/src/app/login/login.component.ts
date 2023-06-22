@@ -1,50 +1,29 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Login } from './login.model';
 
 @Component({
   selector: 'app-login',
-  template: `
-    <h2>Login</h2>
-    <form (submit)="onSubmit()">
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          [(ngModel)]="loginData.username"
-          name="username"
-          required
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          [(ngModel)]="loginData.password"
-          name="password"
-          required
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
-  `,
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  loginData: Login = {
-    username: '',
-    password: '',
-  };
+  username: string = '';
+  password: string = '';
+  error: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
-  onSubmit(): void {
-    this.authService.login(this.loginData).subscribe((loggedIn: boolean) => {
-      if (loggedIn) {
-        this.router.navigate(['/app']);
-      } else {
-        alert('Login failed. Invalid username or password.');
+  login() {
+    this.authService.login(this.username, this.password).subscribe(
+      (response) => {
+        // Inicio de sesión exitoso, redirigir al usuario a la página de cines
+        this.router.navigate(['/cines']);
+      },
+      (error) => {
+        // Error en el inicio de sesión, mostrar un mensaje de error
+        this.error = 'Credenciales inválidas. Por favor, intenta nuevamente.';
       }
-    });
+    );
   }
 }

@@ -31,6 +31,8 @@ const routes: Routes = [
   { path: 'detail', component: CineDetailComponent },
   { path: 'crear', component: CineCreateComponent },
   { path: 'actores/lista-actores', component: ActoresListComponent },
+  // Ruta por defecto (puede variar según tu implementación)
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
