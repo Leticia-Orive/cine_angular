@@ -1,0 +1,29 @@
+<h2>Actores</h2>
+
+<!-- Formulario para agregar un actor -->
+<form (ngSubmit)="agregarActor(actorForm.value)">
+  <input
+    type="text"
+    name="nombre"
+    placeholder="Nombre"
+    [(ngModel)]="actorForm.nombre"
+    required
+  />
+  <input
+    type="text"
+    name="edad"
+    placeholder="Edad"
+    [(ngModel)]="actorForm.edad"
+    required
+  />
+  <button type="submit">Agregar</button>
+</form>
+
+<!-- Lista de actores -->
+<ul>
+  <li *ngFor="let actor of actores">
+    {{ actor.nombre }} - {{ actor.edad }}
+    <button (click)="editarActor(actor)">Editar</button>
+    <button (click)="eliminarActor(actor)">Eliminar</button>
+  </li>
+</ul>

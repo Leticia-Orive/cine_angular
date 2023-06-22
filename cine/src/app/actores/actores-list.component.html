@@ -1,0 +1,9 @@
+<h2>Lista de Actores</h2>
+<div *ngIf="!actores.length">No hay actores por el momento</div>
+<div>
+  <article *ngFor="let actor of actores">
+    <span>{{actor.nombre}}</span>
+    <span>{{actor.apellido}}</span>
+    <span>{{actor.edad}}</span>
+  </article>
+</div>
