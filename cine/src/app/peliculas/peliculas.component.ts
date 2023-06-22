@@ -11,6 +11,16 @@ export class PeliculasComponent {
   peliculaSeleccionada: Pelicula | null = null;
   modo: string = 'lista';
   mensajeExito: string = '';
+  nuevaPelicula: Pelicula = {
+    id: 0,
+    titulo: '',
+    genero: '',
+    director: '',
+    duracion: 0,
+    sinopsis: '',
+    year: 0,
+    // Inicializa los demás campos necesarios
+  };
   constructor(private peliculaService: PeliculaService) {}
   peliculas: Pelicula[] = [
     {
@@ -55,7 +65,36 @@ export class PeliculasComponent {
 
   mostrarFormulario(): void {
     this.peliculaSeleccionada = null;
-    this.modo = 'form';
+    this.modo = 'agregar';
+  }
+  agregarPelicula(): void {
+    this.peliculaService.agregarPelicula(this.nuevaPelicula);
+    // Agregar la nueva película al array de películas
+    this.peliculas.push(this.nuevaPelicula);
+    this.nuevaPelicula = {
+      id: 0,
+      titulo: '',
+      genero: '',
+      director: '',
+      duracion: 0,
+      sinopsis: '',
+      year: 0,
+      // Reinicia los demás campos necesarios
+    };
+    this.modo = 'lista';
+  }
+  cancelarAgregar(): void {
+    this.nuevaPelicula = {
+      id: 0,
+      titulo: '',
+      genero: '',
+      director: '',
+      duracion: 0,
+      sinopsis: '',
+      year: 0,
+      // Reinicia los demás campos necesarios
+    };
+    this.modo = 'lista';
   }
 
   regresarALista(): void {
@@ -85,8 +124,49 @@ export class PeliculasComponent {
     this.modo = 'editar';
   }
 
-  borrarPelicula(pelicula: Pelicula): void {
-    // Llama al método del servicio para eliminar la película
-    this.peliculaService.eliminarPelicula(pelicula.id);
+  mostrarConfirmacionBorrado(pelicula: Pelicula): void {
+    this.peliculaSeleccionada = pelicula;
+    this.modo = 'confirmacionBorrado';
   }
+
+  borrarPelicula(): void {
+    if (this.peliculaSeleccionada) {
+      const id = this.peliculaSeleccionada.id;
+      this.peliculaService.eliminarPelicula(id).subscribe(
+        () => {
+          // Película eliminada exitosamente
+          this.mensajeExito = 'Película eliminada exitosamente';
+          // Realizar otras acciones adicionales si es necesario
+
+          // Eliminar la película del array de películas
+          this.peliculas = this.peliculas.filter(
+            (pelicula) => pelicula.id !== id
+          );
+
+          // Limpiar la selección y cambiar al modo lista
+          this.peliculaSeleccionada = null;
+          this.modo = 'lista';
+
+          // Limpiar el mensaje después de un tiempo
+          setTimeout(() => {
+            this.mensajeExito = '';
+          }, 3000); // Por ejemplo, ocultar el mensaje después de 3 segundos (3000 ms)
+        },
+        (error) => {
+          // Aquí puedes agregar la lógica para manejar el error de la operación
+          console.error('Error al eliminar la película:', error);
+        }
+      );
+
+      this.modo = 'lista';
+      this.peliculaSeleccionada = null;
+    }
+  }
+
+  cancelarBorrado(): void {
+    this.modo = 'lista';
+    this.peliculaSeleccionada = null;
+  }
+
+  // ...
 }

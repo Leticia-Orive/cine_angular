@@ -6,4 +6,5 @@ export interface Pelicula {
   duracion: number;
   sinopsis: string;
   year: number;
+  // Otros campos necesarios
 }

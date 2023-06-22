@@ -31,7 +31,6 @@ import { PeliculaService } from './peliculas/peliculas.service';
     AppComponent,
     ClienteComponent,
     ActoresComponent,
-    CineComponent,
     GrupoComponent,
     LoginComponent,
     PeliculasComponent,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pelicula } from './peliculas.model';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -30,8 +30,21 @@ export class PeliculaService {
     }
   }
 
-  eliminarPelicula(id: number): void {
-    this.peliculas = this.peliculas.filter((pelicula) => pelicula.id !== id);
+  eliminarPelicula(id: number): Observable<any> {
+    //this.peliculas = this.peliculas.filter((pelicula) => pelicula.id !== id);
+    // Buscar la película por su ID en el array de películas
+    const indice = this.peliculas.findIndex((pelicula) => pelicula.id === id);
+
+    if (indice !== -1) {
+      // Eliminar la película del array
+      this.peliculas.splice(indice, 1);
+      return of(null); // Simulación de eliminación exitosa
+    } else {
+      return throwError('No se encontró la película'); // Simulación de error si no se encuentra la película
+    }
+
+    // Simulación de eliminación exitosa
+    return of();
   }
 
   guardarPelicula(pelicula: Pelicula): Observable<any> {
