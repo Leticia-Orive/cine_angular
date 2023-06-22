@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Género</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pelicula of peliculas">
+      <td>{{ pelicula.id }}</td>
+      <td>{{ pelicula.titulo }}</td>
+      <td>{{ pelicula.genero }}</td>
+      <td>
+        <button (click)="verDetalle(pelicula)">Detalle</button>
+        <button (click)="eliminarPelicula(pelicula)">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

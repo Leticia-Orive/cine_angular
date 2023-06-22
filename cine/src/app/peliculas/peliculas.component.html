@@ -1,0 +1,66 @@
+<!-- Lista de películas -->
+<div *ngIf="modo === 'lista'">
+  <h2>Lista de películas</h2>
+  <table>
+    <!-- Código para mostrar la tabla de películas -->
+    <!-- Cada fila de la tabla debería tener un botón "Detalle" para llamar al método 'verDetalle(pelicula)' -->
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Género</th>
+        <th>Director</th>
+        <th>Duraccion</th>
+        <th>Sinopsis</th>
+        <th>Year</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pelicula of peliculas">
+        <td>{{ pelicula.id }}</td>
+        <td>{{ pelicula.titulo }}</td>
+        <td>{{ pelicula.genero }}</td>
+        <th>{{ pelicula.director }}</th>
+        <th>{{ pelicula.duracion }}</th>
+        <th>{{ pelicula.sinopsis }}</th>
+        <th>{{ pelicula.year }}</th>
+        <td>
+          <button (click)="verDetalle(pelicula)">Detalle</button>
+          <button (click)="editarPelicula(pelicula)">Editar</button>
+          <button (click)="borrarPelicula(pelicula)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="mostrarFormulario()">Agregar Película</button>
+</div>
+
+<!-- Detalle de película -->
+<div *ngIf="modo === 'detalle' && peliculaSeleccionada">
+  <h2>Detalle de la película</h2>
+  <p>ID: {{ peliculaSeleccionada.id }}</p>
+  <p>Título: {{ peliculaSeleccionada.titulo }}</p>
+  <p>Género: {{ peliculaSeleccionada.genero }}</p>
+  <p>Director: {{ peliculaSeleccionada.director }}</p>
+  <p>Duraccion: {{ peliculaSeleccionada.duracion }}</p>
+  <p>Sinopsis: {{ peliculaSeleccionada.sinopsis }}</p>
+  <p>Año: {{ peliculaSeleccionada.year }}</p>
+  <!-- Agrega más detalles si es necesario -->
+  <button (click)="regresarALista()">Regresar a la lista</button>
+</div>
+
+<!-- Formulario de película -->
+<div *ngIf="modo === 'form'">
+  <h2>Formulario de película</h2>
+  <!-- Código para mostrar el formulario -->
+  <!-- Agrega los campos necesarios para ingresar los detalles de la película -->
+  <app-pelicula-form
+    (guardarPelicula)="guardarPelicula($event)"
+  ></app-pelicula-form>
+  <button (click)="regresarALista()">Volver al listado</button>
+</div>
+
+<div *ngIf="mensajeExito" class="mensaje-exito">
+  {{ mensajeExito }}
+</div>

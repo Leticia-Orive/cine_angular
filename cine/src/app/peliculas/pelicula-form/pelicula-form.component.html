@@ -1,0 +1,32 @@
+<h2>{{ modo === "agregar" ? "Agregar" : "Editar" }} Película</h2>
+
+<form (ngSubmit)="saveMovie()">
+  <div>
+    <label>Título:</label>
+    <input type="text" [(ngModel)]="pelicula.titulo" name="titulo" required />
+  </div>
+  <div>
+    <label>Género:</label>
+    <input type="text" [(ngModel)]="pelicula.genero" name="genero" required />
+  </div>
+  <div>
+    <label>Duración:</label>
+    <input
+      type="number"
+      [(ngModel)]="pelicula.duracion"
+      name="duracion"
+      required
+    />
+  </div>
+  <div>
+    <label>Sinopsis:</label>
+    <textarea
+      [(ngModel)]="pelicula.sinopsis"
+      name="sinopsis"
+      required
+    ></textarea>
+  </div>
+  <button type="submit">
+    {{ modo === "agregar" ? "Agregar" : "Guardar" }}
+  </button>
+</form>

@@ -1,0 +1,13 @@
+<h2>Detalles de la Película</h2>
+
+<div *ngIf="pelicula">
+  <h3>{{ pelicula.titulo }}</h3>
+  <p>Género: {{ pelicula.genero }}</p>
+  <p>Duración: {{ pelicula.duracion }} minutos</p>
+  <p>Sinopsis: {{ pelicula.sinopsis }}</p>
+</div>
+<div *ngIf="pelicula === null">
+  <!-- Show a loading message when 'pelicula' is null -->
+  <p>Loading movie details...</p>
+</div>
+<button (click)="eliminarPelicula()">Eliminar</button>
