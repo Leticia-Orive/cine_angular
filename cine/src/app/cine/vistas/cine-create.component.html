@@ -1,0 +1,33 @@
+<h2>Crear Cine</h2>
+<form (submit)="crearCine()">
+  <label for="id">Id:</label>
+  <input type="number" id="Id" [(ngModel)]="cine.id" required />
+
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" [(ngModel)]="cine.nombre" required />
+
+  <label for="direccion">Direccion:</label>
+  <input type="text" id="direccion" [(ngModel)]="cine.direccion" required />
+
+  <label for="cif">cif:</label>
+  <input type="text" id="cif" [(ngModel)]="cine.cif" required />
+
+  <label for="email">email:</label>
+  <input type="text" id="email" [(ngModel)]="cine.email" required />
+
+  <label for="provincia">provincia:</label>
+  <input type="text" id="provincia" [(ngModel)]="cine.provincia" required />
+
+  <label for="codigoPostal">Codigo Postal:</label>
+  <input
+    type="number"
+    id="codigoPostal"
+    [(ngModel)]="cine.codigoPostal"
+    required
+  />
+
+  <label for="telefono">Telefono:</label>
+  <input type="number" id="telefono" [(ngModel)]="cine.telefono" required />
+
+  <button type="submit">Crear</button>
+</form>

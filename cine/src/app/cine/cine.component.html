@@ -1,0 +1,13 @@
+<div *ngIf="currentRoute === 'create'">
+  <app-cine-create></app-cine-create>
+</div>
+
+<div *ngIf="currentRoute === 'list'">
+  <app-cine-list
+    ><a routerLink="/cine/list">Ir a la lista de cines</a></app-cine-list
+  >
+</div>
+
+<div *ngIf="currentRoute === 'detail'">
+  <app-cine-detail></app-cine-detail>
+</div>
