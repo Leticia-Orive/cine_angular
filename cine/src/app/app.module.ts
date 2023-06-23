@@ -25,6 +25,7 @@ import { ActoresService } from './actores/actores.service';
 import { CineService } from './cine/cine.service';
 import { ClienteService } from './cliente/cliente.service';
 import { PeliculaService } from './peliculas/peliculas.service';
+import { RegisterComponent } from './login/register.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PeliculaService } from './peliculas/peliculas.service';
     CineCreateComponent,
     CineDetailComponent,
     CineListComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

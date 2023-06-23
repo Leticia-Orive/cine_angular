@@ -16,13 +16,13 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.username, this.password).subscribe(
-      (response) => {
+      () => {
         // Inicio de sesión exitoso, redirigir al usuario a la página de cines
         this.router.navigate(['/cines']);
       },
-      (error) => {
+      () => {
         // Error en el inicio de sesión, mostrar un mensaje de error
-        this.error = 'Credenciales inválidas. Por favor, intenta nuevamente.';
+        this.error = 'Error: Usuario o contraseña incorrectos.';
       }
     );
   }
