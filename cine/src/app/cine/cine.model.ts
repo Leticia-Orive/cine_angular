@@ -3,8 +3,8 @@ export interface Cine {
   nombre: string;
   cif: string;
   direccion: string;
-  email: string;
   provincia: string;
-  codigoPostal: string;
-  telefono: string;
+  codigo_postal: number;
+  correo: string;
+  telefono: number;
 }

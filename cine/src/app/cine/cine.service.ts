@@ -1,36 +1,61 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Cine } from './cine.model';
+import { Cine } from '../cine/cine.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CineService {
-  private apiUrl = 'http://localhost:4200/cine';
+  private cines: Cine[] = [];
 
-  constructor(private http: HttpClient) {}
-
-  getCines(): Observable<Cine[]> {
-    return this.http.get<Cine[]>(this.apiUrl);
+  constructor() {
+    // Inicializar algunos cines de ejemplo
+    this.cines = [
+      {
+        id: 1,
+        nombre: 'Cine A',
+        cif: 'A09876543',
+        direccion: 'Dirección A',
+        provincia: 'Madrid',
+        codigo_postal: 13478,
+        correo: 'cineA@gmail.com',
+        telefono: 123456789,
+      },
+      {
+        id: 2,
+        nombre: 'Cine B',
+        cif: 'A04876543',
+        direccion: 'Dirección B',
+        provincia: 'Madrid',
+        codigo_postal: 13478,
+        correo: 'cineB@gmail.com',
+        telefono: 987654321,
+      },
+    ];
   }
 
-  getCine(id: number): Observable<Cine> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Cine>(url);
+  getCines(): Cine[] {
+    return this.cines;
   }
 
-  crearCine(cine: Cine): Observable<Cine> {
-    return this.http.post<Cine>(this.apiUrl, cine);
+  getCineById(id: number): Cine | undefined {
+    return this.cines.find((cine) => cine.id === id);
   }
 
-  actualizarCine(cine: Cine): Observable<Cine> {
-    const url = `${this.apiUrl}/${cine.id}`;
-    return this.http.put<Cine>(url, cine);
+  agregarCine(cine: Cine): void {
+    this.cines.push(cine);
   }
 
-  eliminarCine(id: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete(url);
+  actualizarCine(cine: Cine): void {
+    const index = this.cines.findIndex((c) => c.id === cine.id);
+    if (index !== -1) {
+      this.cines[index] = cine;
+    }
+  }
+
+  eliminarCine(id: number): void {
+    const index = this.cines.findIndex((cine) => cine.id === id);
+    if (index !== -1) {
+      this.cines.splice(index, 1);
+    }
   }
 }

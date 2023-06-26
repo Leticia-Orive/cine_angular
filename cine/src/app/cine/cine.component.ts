@@ -1,50 +1,51 @@
 import { Component } from '@angular/core';
 import { Cine } from './cine.model';
 import { CineService } from './cine.service';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-cine',
   templateUrl: './cine.component.html',
   styleUrls: ['./cine.component.css'],
 })
 export class CineComponent {
-  currentRoute: string = '';
-  cine: Cine = {
-    id: 1,
-    nombre: 'Cine ABC',
-    cif: '12345678',
-    direccion: 'Calle Principal 123',
-    email: 'cine@abc.com',
-    provincia: 'Ciudad',
-    codigoPostal: '12345',
-    telefono: '987654321',
+  cines: Cine[] = [];
+  selectedCine: Cine = {
+    nombre: '',
+    cif: '',
+    direccion: '',
+    provincia: '',
+    codigo_postal: 0,
+    correo: '',
+    telefono: 9,
+    id: 0,
   };
 
-  constructor(
-    private cineService: CineService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const firstChild = this.activatedRoute.firstChild;
-        if (firstChild && firstChild.routeConfig) {
-          this.currentRoute = firstChild.routeConfig.path || ''; // Asignar la ruta activa o un valor predeterminado
-        } else {
-          this.currentRoute = ''; // Valor predeterminado en caso de que la propiedad sea nula
-        }
-      });
+  constructor(private cineService: CineService) {
+    this.cines = this.cineService.getCines();
   }
 
-  guardarCine(): void {
-    // Lógica para guardar el cine
-    console.log('Cine guardado:', this.cine);
+  onSelectCine(cine: Cine): void {
+    this.selectedCine = cine;
   }
-  actualizarCine() {
-    this.cineService.actualizarCine(this.cine).subscribe(() => {
-      // Realizar acciones después de actualizar el cine
-    });
+
+  guardarCine(cine: Cine): void {
+    if (cine.id) {
+      this.cineService.actualizarCine(cine);
+    } else {
+      this.cineService.agregarCine(cine);
+    }
+    this.selectedCine;
+  }
+
+  eliminarCine(id: number): void {
+    this.cineService.eliminarCine(id);
+    if (this.selectedCine?.id === id) {
+      this.selectedCine;
+    }
+  }
+  updateCineName(newName: string): void {
+    if (this.selectedCine) {
+      this.selectedCine.nombre = newName;
+    }
   }
 }

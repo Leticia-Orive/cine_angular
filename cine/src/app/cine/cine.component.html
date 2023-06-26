@@ -1,13 +1,85 @@
-<div *ngIf="currentRoute === 'create'">
-  <app-cine-create></app-cine-create>
+<h2>Listado de Cines</h2>
+
+<ul>
+  <li *ngFor="let cine of cines" (click)="onSelectCine(cine)">
+    {{ cine.nombre }}
+  </li>
+</ul>
+
+<h2>Detalle del Cine</h2>
+
+<div *ngIf="selectedCine">
+  <p>Nombre: {{ selectedCine.nombre }}</p>
+  <p>Dirección: {{ selectedCine.direccion }}</p>
+  <p>Teléfono: {{ selectedCine.telefono }}</p>
+  <p>Cif: {{ selectedCine.cif }}</p>
+  <p>Provincia: {{ selectedCine.provincia }}</p>
+  <p>Codigo Postal: {{ selectedCine.codigo_postal }}</p>
+  <p>Correo Electronico: {{ selectedCine.correo }}</p>
 </div>
 
-<div *ngIf="currentRoute === 'list'">
-  <app-cine-list
-    ><a routerLink="/cine/list">Ir a la lista de cines</a></app-cine-list
-  >
-</div>
+<h2>Formulario</h2>
 
-<div *ngIf="currentRoute === 'detail'">
-  <app-cine-detail></app-cine-detail>
-</div>
+<form (ngSubmit)="guardarCine(selectedCine)">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input
+      type="text"
+      [(ngModel)]="selectedCine.nombre"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <div>
+    <label for="cif">Cif:</label>
+    <input
+      type="text"
+      [(ngModel)]="selectedCine.cif"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <div>
+    <label for="direccion">Dirección:</label>
+    <input
+      type="text"
+      [(ngModel)]="selectedCine.direccion"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <div>
+    <label for="provincia">Provincia:</label>
+    <input
+      type="text"
+      [(ngModel)]="selectedCine.provincia"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <div>
+    <label for="codigo_postal">Codigo Postal:</label>
+    <input
+      type="number"
+      [(ngModel)]="selectedCine.codigo_postal"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <div>
+    <label for="correo">Correo Electronico:</label>
+    <input
+      type="text"
+      [(ngModel)]="selectedCine.correo"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <div>
+    <label for="telefono">Teléfono:</label>
+    <input
+      type="number"
+      [(ngModel)]="selectedCine.telefono"
+      (ngModelChange)="updateCineName($event)"
+    />
+  </div>
+  <button type="submit">Guardar</button>
+</form>
+
+<button *ngIf="selectedCine" (click)="eliminarCine(selectedCine.id)">
+  Eliminar
+</button>
