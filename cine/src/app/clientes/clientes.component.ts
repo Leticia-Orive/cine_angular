@@ -9,7 +9,17 @@ import { ClienteService } from './clientes.service';
 })
 export class ClienteComponent {
   clientes: Cliente[] = [];
-  nuevoCliente: Cliente = { id: 0, nombre: '', apellido: '', correo: '' };
+  nuevoCliente: Cliente = {
+    id: 0,
+    nombre: '',
+    apellido: '',
+    correo: '',
+    cif: '',
+    direccion: '',
+    provincia: '',
+    codigo_postal: 0,
+    telefono: 0,
+  };
   clienteSeleccionado: Cliente | null = null;
 
   constructor(private clienteService: ClienteService) {
@@ -28,7 +38,17 @@ export class ClienteComponent {
     this.clienteService.agregarCliente(this.nuevoCliente);
 
     // Reiniciar el formulario
-    this.nuevoCliente = { id: 0, nombre: '', apellido: '', correo: '' };
+    this.nuevoCliente = {
+      id: 0,
+      nombre: '',
+      apellido: '',
+      correo: '',
+      cif: '',
+      direccion: '',
+      provincia: '',
+      codigo_postal: 0,
+      telefono: 0,
+    };
   }
 
   editarCliente(cliente: Cliente): void {
