@@ -7,17 +7,19 @@
 </ul>
 
 <h2>Detalle del Cine</h2>
-
-<div *ngIf="selectedCine">
-  <p>Nombre: {{ selectedCine.nombre }}</p>
-  <p>Dirección: {{ selectedCine.direccion }}</p>
-  <p>Teléfono: {{ selectedCine.telefono }}</p>
-  <p>Cif: {{ selectedCine.cif }}</p>
-  <p>Provincia: {{ selectedCine.provincia }}</p>
-  <p>Codigo Postal: {{ selectedCine.codigo_postal }}</p>
-  <p>Correo Electronico: {{ selectedCine.correo }}</p>
-</div>
-
+<ul>
+  <li *ngFor="let cine of cines">
+    <div *ngIf="selectedCine">
+      <p>Nombre: {{ selectedCine.nombre }}</p>
+      <p>Dirección: {{ selectedCine.direccion }}</p>
+      <p>Teléfono: {{ selectedCine.telefono }}</p>
+      <p>Cif: {{ selectedCine.cif }}</p>
+      <p>Provincia: {{ selectedCine.provincia }}</p>
+      <p>Codigo Postal: {{ selectedCine.codigo_postal }}</p>
+      <p>Correo Electronico: {{ selectedCine.correo }}</p>
+    </div>
+  </li>
+</ul>
 <h2>Formulario</h2>
 
 <form (ngSubmit)="guardarCine(selectedCine)">

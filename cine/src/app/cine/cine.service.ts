@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cine } from '../cine/cine.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +58,15 @@ export class CineService {
     if (index !== -1) {
       this.cines.splice(index, 1);
     }
+  }
+  guardarCine(cine: Cine): Observable<Cine> {
+    // Lógica para guardar el cine en la base de datos o en una API
+    // ...
+
+    // Después de guardar el cine, agrega el cine guardado a la lista de cines existente
+    this.cines.push(cine);
+
+    // Devuelve el cine guardado como observable
+    return of(cine);
   }
 }
