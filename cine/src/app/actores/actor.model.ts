@@ -3,4 +3,5 @@ export interface Actor {
   nombre: string;
   apellido: string;
   edad: number;
+  genero: string;
 }

@@ -1,1 +1,58 @@
-<p>salas works!</p>
+<h2>Lista de Salas de Cine</h2>
+
+<ul>
+  <li *ngFor="let sala of salas">
+    {{ sala.nombre }} - Capacidad: {{ sala.capacidad }} - Ubicación:
+    {{ sala.ubicacion }}
+    <button (click)="seleccionarSala(sala)">Editar</button>
+    <button (click)="eliminarSala(sala.id)">Eliminar</button>
+  </li>
+</ul>
+
+<h2 *ngIf="modoEdicion">Editar Sala de Cine</h2>
+<h2 *ngIf="!modoEdicion">Agregar Nueva Sala de Cine</h2>
+
+<form *ngIf="modoEdicion" (ngSubmit)="guardarSala(salaForm.value)">
+  <label for="nombre">Nombre:</label>
+  <input
+    id="nombre"
+    type="text"
+    name="nombre"
+    [ngModel]="salaSeleccionada?.nombre"
+    required
+  />
+
+  <label for="capacidad">Capacidad:</label>
+  <input
+    id="capacidad"
+    type="number"
+    name="capacidad"
+    [ngModel]="salaSeleccionada?.capacidad"
+    required
+  />
+
+  <label for="ubicacion">Ubicación:</label>
+  <input
+    id="ubicacion"
+    type="text"
+    name="ubicacion"
+    [ngModel]="salaSeleccionada?.ubicacion"
+    required
+  />
+
+  <button type="submit">Guardar</button>
+  <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+</form>
+
+<form *ngIf="!modoEdicion" (ngSubmit)="guardarSala(salaForm.value)">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" type="text" formControlName="nombre" required />
+
+  <label for="capacidad">Capacidad:</label>
+  <input id="capacidad" type="number" formControlName="capacidad" required />
+
+  <label for="ubicacion">Ubicación:</label>
+  <input id="ubicacion" type="text" formControlName="ubicacion" required />
+
+  <button type="submit">Guardar</button>
+</form>

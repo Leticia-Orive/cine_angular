@@ -1,39 +1,51 @@
 import { Injectable } from '@angular/core';
-import { Actor } from './actores.model';
+import { Observable, of } from 'rxjs';
+import { Actor } from './actor.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ActoresService {
-  getActores(): Actor[] {
-    throw new Error('Method not implemented.');
-  }
   private actores: Actor[] = [];
 
   constructor() {}
 
-  // Método para agregar un actor
-  agregarActor(actor: Actor) {
-    this.actores.push(actor);
+  obtenerActores(): Observable<Actor[]> {
+    return of(this.actores);
   }
 
-  // Método para editar un actor
-  editarActor(actor: Actor) {
-    // Encuentra el índice del actor en el arreglo y reemplaza sus datos
+  obtenerActor(id: number): Observable<Actor | undefined> {
+    const actor = this.actores.find((a) => a.id === id);
+    return of(actor);
+  }
+
+  agregarActor(actor: Actor): Observable<Actor> {
+    actor.id = this.obtenerNuevoId();
+    this.actores.push(actor);
+    return of(actor);
+  }
+
+  editarActor(actor: Actor): Observable<Actor | undefined> {
     const index = this.actores.findIndex((a) => a.id === actor.id);
     if (index !== -1) {
       this.actores[index] = actor;
+      return of(actor);
     }
+    return of(undefined);
   }
 
-  // Método para eliminar un actor
-  eliminarActor(actor: Actor) {
-    // Encuentra el índice del actor en el arreglo y elimínalo
-    const index = this.actores.findIndex((a) => a.id === actor.id);
+  eliminarActor(id: number): Observable<boolean> {
+    const index = this.actores.findIndex((a) => a.id === id);
     if (index !== -1) {
       this.actores.splice(index, 1);
+      return of(true);
     }
+    return of(false);
   }
 
-  // Otros métodos según tus necesidades
+  private obtenerNuevoId(): number {
+    const ids = this.actores.map((a) => a.id);
+    const maxId = Math.max(...ids);
+    return maxId + 1;
+  }
 }
