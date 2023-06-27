@@ -6,6 +6,7 @@ export interface Cliente {
   direccion: string;
   provincia: string;
   codigo_postal: number;
-  correo: string;
+  correoElectronico: string;
   telefono: number;
+  contraseña: string;
 }

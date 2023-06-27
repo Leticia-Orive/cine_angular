@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { GrupoComponent } from './grupo/grupo.component';
-import { LoginComponent } from './login/login.component';
+
 import { PeliculaDetalleComponent } from './peliculas/pelicula-detalle/pelicula-detalle.component';
 import { PeliculaFormComponent } from './peliculas/pelicula-form/pelicula-form.component';
 import { PeliculaListComponent } from './peliculas/pelicula-list/pelicula-list.component';
@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { PeliculaService } from './peliculas/peliculas.service';
-import { RegisterComponent } from './login/register.component';
+
 import { ClienteComponent } from './clientes/clientes.component';
 import { ClienteService } from './clientes/clientes.service';
 import { CineComponent } from './cine/cine.component';
@@ -29,14 +29,14 @@ import { ActoresService } from './actores/actores.service';
     AppComponent,
     ActoresComponent,
     GrupoComponent,
-    LoginComponent,
+
     PeliculasComponent,
     PeliculaDetalleComponent,
     PeliculaFormComponent,
     PeliculaListComponent,
     SalaCinesComponent,
     CineComponent,
-    RegisterComponent,
+
     ClienteComponent,
     ActoresComponent,
   ],

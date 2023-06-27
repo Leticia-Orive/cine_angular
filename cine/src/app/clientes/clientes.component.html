@@ -2,7 +2,8 @@
 
 <ul>
   <li *ngFor="let cliente of clientes">
-    {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.correo }}
+    {{ cliente.nombre }} {{ cliente.apellido }} -
+    {{ cliente.correoElectronico }}
     <button (click)="editarCliente(cliente)">Editar</button>
     <button (click)="eliminarCliente(cliente.id)">Eliminar</button>
   </li>
@@ -23,7 +24,12 @@
   />
 
   <label for="correo">Correo:</label>
-  <input type="email" id="correo" [(ngModel)]="nuevoCliente.correo" required />
+  <input
+    type="email"
+    id="correo"
+    [(ngModel)]="nuevoCliente.correoElectronico"
+    required
+  />
 
   <label for="cif">Cif:</label>
   <input type="text" id="cif" [(ngModel)]="nuevoCliente.cif" required />
@@ -86,7 +92,7 @@
   <input
     type="email"
     id="correo"
-    [(ngModel)]="clienteSeleccionado.correo"
+    [(ngModel)]="clienteSeleccionado.correoElectronico"
     required
   />
 

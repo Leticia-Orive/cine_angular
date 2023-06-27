@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 
 import { GrupoComponent } from './grupo/grupo.component';
 import { PeliculaDetalleComponent } from './peliculas/pelicula-detalle/pelicula-detalle.component';
@@ -12,7 +11,6 @@ import { CineComponent } from './cine/cine.component';
 import { ActoresComponent } from './actores/actores.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: 'pelicula', component: PeliculasComponent },
   { path: 'peliculas/:id', component: PeliculaDetalleComponent },
   { path: 'peliculas/agregar', component: PeliculaFormComponent },
