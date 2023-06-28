@@ -1,0 +1,29 @@
+<p>login works!</p>
+<h2>Iniciar Sesión</h2>
+
+<form (submit)="login()">
+  <div>
+    <label for="username">Nombre de usuario:</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      [(ngModel)]="username"
+      required
+    />
+  </div>
+  <div>
+    <label for="password">Contraseña:</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+    />
+  </div>
+  <div>
+    <button type="submit">Iniciar Sesión</button>
+    <button type="button" (click)="registrarCliente()">Regístrate</button>
+  </div>
+</form>

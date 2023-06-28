@@ -1,1 +1,20 @@
-<p>grupo works!</p>
+<h2>Familias Numerosas</h2>
+<ul>
+  <li *ngFor="let familia of familiasNumerosas">
+    {{ familia.nombre }} - Descuento: {{ familia.descuento }}%
+  </li>
+</ul>
+
+<h2>Minusválidos</h2>
+<ul>
+  <li *ngFor="let minusvalido of minusvalidos">
+    {{ minusvalido.nombre }} - Descuento: {{ minusvalido.descuento }}%
+  </li>
+</ul>
+
+<h2>Pensionistas</h2>
+<ul>
+  <li *ngFor="let pensionista of pensionistas">
+    {{ pensionista.nombre }} - Descuento: {{ pensionista.descuento }}%
+  </li>
+</ul>

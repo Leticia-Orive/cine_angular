@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Cliente } from './clientes.model';
 import { ClienteService } from './clientes.service';
+import { GrupoPersonas } from '../grupoPersonas/grupo-personas.model';
+import { GrupoPersonasService } from '../grupoPersonas/grupo-personas.service';
 
 @Component({
   selector: 'app-cliente',
@@ -13,17 +15,26 @@ export class ClienteComponent {
     id: 0,
     nombre: '',
     apellido: '',
-    correo: '',
+    correoElectronico: '',
     cif: '',
     direccion: '',
     provincia: '',
     codigo_postal: 0,
     telefono: 0,
+    contraseña: '',
+    grupo: '',
   };
   clienteSeleccionado: Cliente | null = null;
-
-  constructor(private clienteService: ClienteService) {
+  grupoSeleccionado: GrupoPersonas | null = null;
+  grupos: GrupoPersonas[] = [];
+  constructor(
+    private clienteService: ClienteService,
+    private grupoPersonasService: GrupoPersonasService
+  ) {
     this.clientes = clienteService.obtenerClientes();
+  }
+  ngOnInit() {
+    this.grupos = this.grupoPersonasService.getGrupos();
   }
 
   agregarCliente(): void {
@@ -42,12 +53,14 @@ export class ClienteComponent {
       id: 0,
       nombre: '',
       apellido: '',
-      correo: '',
+      correoElectronico: '',
       cif: '',
       direccion: '',
       provincia: '',
       codigo_postal: 0,
       telefono: 0,
+      contraseña: '',
+      grupo: '',
     };
   }
 

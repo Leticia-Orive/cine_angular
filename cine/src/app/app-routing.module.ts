@@ -9,6 +9,8 @@ import { SalaCinesComponent } from './salas/salas.component';
 import { ClienteComponent } from './clientes/clientes.component';
 import { CineComponent } from './cine/cine.component';
 import { ActoresComponent } from './actores/actores.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   { path: 'pelicula', component: PeliculasComponent },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'clientes', component: ClienteComponent },
   { path: 'cine', component: CineComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
 ];
 
 @NgModule({

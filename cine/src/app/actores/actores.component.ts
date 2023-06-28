@@ -20,6 +20,7 @@ export class ActoresComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       id: [0],
       nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
       edad: ['', Validators.required],
       genero: ['', Validators.required],
     });

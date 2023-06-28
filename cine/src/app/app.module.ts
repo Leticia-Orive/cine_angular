@@ -23,6 +23,9 @@ import { CineComponent } from './cine/cine.component';
 import { CineService } from './cine/cine.service';
 import { ActoresComponent } from './actores/actores.component';
 import { ActoresService } from './actores/actores.service';
+import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
+import { GrupoService } from './grupo/grupo.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,12 @@ import { ActoresService } from './actores/actores.service';
     PeliculaListComponent,
     SalaCinesComponent,
     CineComponent,
-
+    GrupoComponent,
     ClienteComponent,
     ActoresComponent,
+    RegistroComponent,
+    LoginComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,13 @@ import { ActoresService } from './actores/actores.service';
 
     RouterModule,
   ],
-  providers: [PeliculaService, ClienteService, CineService, ActoresService],
+  providers: [
+    PeliculaService,
+    ClienteService,
+    CineService,
+    ActoresService,
+    GrupoService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

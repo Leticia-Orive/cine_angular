@@ -9,4 +9,5 @@ export interface Cliente {
   correoElectronico: string;
   telefono: number;
   contraseña: string;
+  grupo: string;
 }
