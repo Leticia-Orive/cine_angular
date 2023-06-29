@@ -13,12 +13,19 @@
 
 <form (submit)="agregarCliente()">
   <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" [(ngModel)]="nuevoCliente.nombre" required />
+  <input
+    type="text"
+    id="nombre"
+    name="nombre"
+    [(ngModel)]="nuevoCliente.nombre"
+    required
+  />
 
   <label for="apellido">Apellido:</label>
   <input
     type="text"
     id="apellido"
+    name="apellido"
     [(ngModel)]="nuevoCliente.apellido"
     required
   />
@@ -27,17 +34,25 @@
   <input
     type="email"
     id="correo"
+    name="correo"
     [(ngModel)]="nuevoCliente.correoElectronico"
     required
   />
 
   <label for="cif">CIF:</label>
-  <input type="text" id="cif" [(ngModel)]="nuevoCliente.cif" required />
+  <input
+    type="text"
+    id="cif"
+    name="cif"
+    [(ngModel)]="nuevoCliente.cif"
+    required
+  />
 
   <label for="direccion">Dirección:</label>
   <input
     type="text"
     id="direccion"
+    name="direccion"
     [(ngModel)]="nuevoCliente.direccion"
     required
   />
@@ -46,6 +61,7 @@
   <input
     type="text"
     id="provincia"
+    name="provincia"
     [(ngModel)]="nuevoCliente.provincia"
     required
   />
@@ -54,6 +70,7 @@
   <input
     type="number"
     id="codigo_postal"
+    name="codigo_postal"
     [(ngModel)]="nuevoCliente.codigo_postal"
     required
   />
@@ -62,6 +79,7 @@
   <input
     type="number"
     id="telefono"
+    name="telefono"
     [(ngModel)]="nuevoCliente.telefono"
     required
   />

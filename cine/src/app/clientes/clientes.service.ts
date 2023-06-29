@@ -7,32 +7,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ClienteService {
-  private clientes: Cliente[] = [];
   private apiUrl = 'http://localhost:4200/clientes';
+
   constructor(private http: HttpClient) {}
 
   registrarCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.apiUrl, cliente);
   }
-  obtenerClientes(): Cliente[] {
-    return this.clientes;
+
+  obtenerClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.apiUrl);
   }
 
-  agregarCliente(cliente: Cliente): void {
-    this.clientes.push(cliente);
+  actualizarCliente(cliente: Cliente): Observable<Cliente> {
+    const url = `${this.apiUrl}/${cliente.id}`;
+    return this.http.put<Cliente>(url, cliente);
   }
 
-  actualizarCliente(cliente: Cliente): void {
-    const index = this.clientes.findIndex((c) => c.id === cliente.id);
-    if (index !== -1) {
-      this.clientes[index] = cliente;
-    }
-  }
-
-  eliminarCliente(id: number): void {
-    const index = this.clientes.findIndex((c) => c.id === id);
-    if (index !== -1) {
-      this.clientes.splice(index, 1);
-    }
+  eliminarCliente(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 }
