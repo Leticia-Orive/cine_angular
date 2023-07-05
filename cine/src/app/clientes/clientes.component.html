@@ -87,7 +87,7 @@
   <label for="grupo">Grupo:</label>
   <select id="grupo" name="grupo" [(ngModel)]="nuevoCliente.grupo">
     <option *ngFor="let grupo of grupos" [value]="grupo">
-      {{ grupo.nombre }}
+      {{ grupo.nombre }}- {{ grupo.tipoDescuento }}
     </option>
   </select>
 
@@ -101,6 +101,7 @@
   <input
     type="text"
     id="nombre"
+    name="nombre"
     [(ngModel)]="clienteSeleccionado.nombre"
     required
   />
@@ -109,6 +110,7 @@
   <input
     type="text"
     id="apellido"
+    name="apellido"
     [(ngModel)]="clienteSeleccionado.apellido"
     required
   />
@@ -117,6 +119,7 @@
   <input
     type="email"
     id="correo"
+    name="correo"
     [(ngModel)]="clienteSeleccionado.correoElectronico"
     required
   />
@@ -128,6 +131,7 @@
   <input
     type="text"
     id="direccion"
+    name="direccion"
     [(ngModel)]="clienteSeleccionado.direccion"
     required
   />
@@ -136,6 +140,7 @@
   <input
     type="text"
     id="provincia"
+    name="provincia"
     [(ngModel)]="clienteSeleccionado.provincia"
     required
   />
@@ -144,6 +149,7 @@
   <input
     type="number"
     id="codigo_postal"
+    name="codigo_postal"
     [(ngModel)]="clienteSeleccionado.codigo_postal"
     required
   />
@@ -152,6 +158,7 @@
   <input
     type="number"
     id="telefono"
+    name="telefono"
     [(ngModel)]="clienteSeleccionado.telefono"
     required
   />

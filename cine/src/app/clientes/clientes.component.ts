@@ -12,7 +12,6 @@ import { GrupoPersonasService } from '../grupoPersonas/grupo-personas.service';
 export class ClienteComponent implements OnInit {
   clientes: Cliente[] = [];
   nuevoCliente: Cliente = {
-    id: 0,
     nombre: '',
     apellido: '',
     correoElectronico: '',
@@ -21,8 +20,9 @@ export class ClienteComponent implements OnInit {
     provincia: '',
     codigo_postal: 0,
     telefono: 0,
-    contraseña: '',
     grupo: '',
+    id: 0,
+    contraseña: '',
   };
   clienteSeleccionado: Cliente | null = null;
   grupoSeleccionado: GrupoPersonas | null = null;
@@ -44,13 +44,14 @@ export class ClienteComponent implements OnInit {
     });
   }
 
-  agregarCliente(): void {
-    this.clienteService
-      .registrarCliente(this.nuevoCliente)
-      .subscribe((clienteRegistrado) => {
-        this.clientes.push(clienteRegistrado);
+  agregarCliente() {
+    this.clienteService.registrarCliente(this.nuevoCliente).subscribe(
+      (cliente) => {
+        // Cliente agregado exitosamente
+        // Lógica adicional si es necesario
+        console.log('Cliente agregado:', cliente);
+        // Reiniciar el formulario
         this.nuevoCliente = {
-          id: 0,
           nombre: '',
           apellido: '',
           correoElectronico: '',
@@ -59,12 +60,18 @@ export class ClienteComponent implements OnInit {
           provincia: '',
           codigo_postal: 0,
           telefono: 0,
-          contraseña: '',
           grupo: '',
+          id: 0,
+          contraseña: '',
         };
-      });
+      },
+      (error) => {
+        // Error al agregar el cliente
+        // Manejo de errores si es necesario
+        console.error('Error al agregar el cliente:', error);
+      }
+    );
   }
-
   editarCliente(cliente: Cliente): void {
     this.clienteSeleccionado = cliente;
   }
